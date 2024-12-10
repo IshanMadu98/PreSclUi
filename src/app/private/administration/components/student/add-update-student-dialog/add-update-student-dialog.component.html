@@ -1,0 +1,212 @@
+<div mat-dialog-title class="d-flex justify-content-between">
+  <div>
+    <p class="mb-0 mt-1 ps-2 dialog-title">{{ title }}</p>
+  </div>
+  <div class="justify-content-end">
+    <button [mat-dialog-close]="true" mat-icon-button>
+      <mat-icon class="dialog-icon">close</mat-icon>
+    </button>
+  </div>
+</div>
+<hr />
+<form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+  <div mat-dialog-content>
+    <div class="row">
+      <!-- Student Number -->
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label nzRequired>Student No</nz-form-label>
+          <nz-form-control nzErrorTip="Student No is required!">
+            <input
+              nz-input
+              formControlName="studentNo"
+              placeholder="Enter Student Number"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <!-- First Name -->
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label nzRequired>First Name</nz-form-label>
+          <nz-form-control nzErrorTip="First Name is required!">
+            <input
+              nz-input
+              formControlName="firstName"
+              placeholder="Enter First Name"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <!-- Last Name -->
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label nzRequired>Last Name</nz-form-label>
+          <nz-form-control nzErrorTip="Last Name is required!">
+            <input
+              nz-input
+              formControlName="lastName"
+              placeholder="Enter Last Name"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <!-- Email -->
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label nzRequired>Email</nz-form-label>
+          <nz-form-control nzErrorTip="Invalid email!">
+            <input
+              nz-input
+              formControlName="email"
+              placeholder="Enter Email"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <!-- Phone Number -->
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label nzRequired>Phone Number</nz-form-label>
+          <nz-form-control nzErrorTip="Invalid phone number!">
+            <input
+              nz-input
+              formControlName="phoneNumber"
+              placeholder="Enter Phone Number"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <!-- Date of Birth -->
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label nzRequired>Date of Birth</nz-form-label>
+          <nz-form-control nzErrorTip="Date of Birth is required!">
+            <nz-date-picker
+              class="w-100"
+              formControlName="dateOfBirth"
+            ></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <!-- Gender -->
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label nzRequired>Gender</nz-form-label>
+          <nz-form-control nzErrorTip="Gender is required!" class="w-100">
+            <nz-select
+              formControlName="gender"
+              nzPlaceHolder="Select Gender"
+            >
+              <nz-option [nzValue]=0 nzLabel="Male"></nz-option>
+              <nz-option [nzValue]=1 nzLabel="Female"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <!-- Enrollment Date -->
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label nzRequired>Enrollment Date</nz-form-label>
+          <nz-form-control nzErrorTip="Enrollment Date is required!">
+            <nz-date-picker
+              class="w-100"
+              formControlName="enrollmentDate"
+            ></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <!-- Photo -->
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label>Photo URL</nz-form-label>
+          <nz-form-control>
+            <input
+              nz-input
+              formControlName="photo"
+              placeholder="Enter Photo URL"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <!-- Parent Full Name -->
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label nzRequired>Parent Full Name</nz-form-label>
+          <nz-form-control nzErrorTip="Parent Full Name is required!">
+            <input
+              nz-input
+              formControlName="parentFullName"
+              placeholder="Enter Parent Full Name"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <!-- Parent Email -->
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label nzRequired>Parent Email</nz-form-label>
+          <nz-form-control nzErrorTip="Invalid Parent Email!">
+            <input
+              nz-input
+              formControlName="parentEmail"
+              placeholder="Enter Parent Email"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <!-- Parent Address -->
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label nzRequired>Parent Address</nz-form-label>
+          <nz-form-control nzErrorTip="Parent Address is required!">
+            <textarea
+              nz-input
+              formControlName="parentAddress"
+              placeholder="Enter Parent Address"
+            ></textarea>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <!-- Parent NIC -->
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label nzRequired>Parent NIC</nz-form-label>
+          <nz-form-control nzErrorTip="Invalid NIC!">
+            <input
+              nz-input
+              formControlName="parentNIC"
+              placeholder="Enter Parent NIC"
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-end mt-3 mb-4 me-4">
+    <button
+      class="small-btn-width btn-radius me-2"
+      [mat-dialog-close]="true"
+      nzType="primary"
+      nzGhost
+      nz-button
+    >
+      Cancel
+    </button>
+    <button class="btn-radius small-btn-width" nzType="primary" nz-button>
+      {{ btnTitle }}
+    </button>
+  </div>
+</form>

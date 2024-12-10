@@ -1,0 +1,80 @@
+<div>
+  <div class="d-flex justify-content-between mb-2">
+    <div></div>
+
+    <button nz-button nzType="primary" (click)="AddStudent()">
+      Add Student
+    </button>
+  </div>
+  <nz-table
+    #nzTable
+    [nzData]="students"
+    nzTableLayout="fixed"
+    [nzBordered]="true"
+    [nzTableLayout]="'fixed'"
+    [nzShowPagination]="false"
+    ngSkipHydration
+  >
+    <thead>
+      <tr>
+        <th nzWidth="60px"></th>
+        <th>Student No</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (student of nzTable.data; track student) {
+      <tr>
+        <td
+          [nzExpand]="expandSet.has(student.id)"
+          (nzExpandChange)="onExpandChange(student.id, $event)"
+        ></td>
+        <td>{{ student.studentNo }}</td>
+        <td>{{ student.firstName }} {{ student.lastName }}</td>
+        <td>{{ student.email }}</td>
+        <td class="text-center">
+          <button nz-button nzType="default" (click)="UpdateStudent(student)">
+            Edit
+          </button>
+          <button
+            nz-button
+            nzType="default"
+            (click)="deleteStudent(student.id)"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+      <tr [nzExpand]="expandSet.has(student.id)">
+        <td class="ms-5 ps-5 " >
+          <nz-table
+            [nzData]="[student]"
+            [nzBordered]="true"
+            [nzTableLayout]="'fixed'"
+            [nzShowPagination]="false"
+          >
+            <thead>
+              <tr>
+                <th>Parent Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>NIC</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ student.parentFullName }}</td>
+                <td>{{ student.parentEmail }}</td>
+                <td>{{ student.parentAddress }}</td>
+                <td>{{ student.parentNIC }}</td>
+              </tr>
+            </tbody>
+          </nz-table>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </nz-table>
+</div>

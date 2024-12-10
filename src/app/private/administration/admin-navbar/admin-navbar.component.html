@@ -1,0 +1,71 @@
+<div class="dashboard-container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <h4 class="mb-0">KidsPark</h4>
+      </a>
+      <div class="d-flex align-items-center">
+        <!-- <div class="dropdown">
+          <button class="btn btn-link text-dark dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            <i class="bi bi-bell"></i>
+            <span class="badge bg-danger">5</span>
+
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="#">Notification 1</a></li>
+            <li><a class="dropdown-item" href="#">Notification 2</a></li>
+          </ul>
+        </div> -->
+        <mat-icon matBadge="15">home</mat-icon>
+
+        <div class="ms-3">
+          <mat-icon>user</mat-icon>
+
+          <img src="assets/avatar.png" class="rounded-circle" width="32" height="32" alt="User">
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="d-flex">
+    <!-- Sidebar -->
+    <div class="sidebar bg-white border-end">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/dashboard">
+            <i class="bi bi-house-door"></i> Dashboard
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admin-home/student">
+            <i class="bi bi-mortarboard"></i> Students
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admin-home/staff">
+            <i class="bi bi-people"></i> Staff
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admin-home/attendance">
+            <i class="bi bi-calendar3"></i> Attendance
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/payments">
+            <i class="bi bi-credit-card"></i> Payments
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/settings">
+            <i class="bi bi-gear"></i> Settings
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="main-content p-4">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

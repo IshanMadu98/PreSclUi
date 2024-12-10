@@ -1,0 +1,82 @@
+<div>
+  <div class="d-flex justify-content-between mb-2">
+    <div></div>
+
+    <button nz-button nzType="primary" (click)="AddStaff()">
+      Add Staff
+    </button>
+  </div>
+  <nz-table
+    #nzTable
+    [nzData]="staffMembers"
+    nzTableLayout="fixed"
+    [nzBordered]="true"
+    [nzTableLayout]="'fixed'"
+    [nzShowPagination]="false"
+    ngSkipHydration
+  >
+    <thead>
+      <tr>
+        <th nzWidth="60px"></th>
+        <th>Employee No</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (data of nzTable.data; track data) {
+      <tr>
+        <td
+          [nzExpand]="expandSet.has(data.id)"
+          (nzExpandChange)="onExpandChange(data.id, $event)"
+        ></td>
+        <td>{{ data.empNo }}</td>
+        <td>{{ data.firstName }} {{ data.lastName }}</td>
+        <td>{{ data.email }}</td>
+        <td class="text-center">
+          <button nz-button nzType="default" (click)="UpdateStaff(data)">
+            Edit
+          </button>
+          <button
+            nz-button
+            nzType="default"
+            (click)="deleteStaff(data.id)"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+      <tr [nzExpand]="expandSet.has(data.id)">
+        <td class="ms-5 ps-5 " >
+          <nz-table
+            [nzData]="[staffMembers]"
+            [nzBordered]="true"
+            [nzTableLayout]="'fixed'"
+            [nzShowPagination]="false"
+          >
+            <thead>
+              <tr>
+                <th>Phone Number</th>
+                <th>Date Joined</th>
+                <th>Gender</th>
+                <th>NIC</th>
+                <th>Address</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ data.phoneNumber }}</td>
+                <td>{{ data.dateJoined | date: 'yyyy-MM-dd'}}</td>
+                <td> {{ data.gender === 0 ? 'Male' : 'Female' }}</td>
+                <td>{{ data.nic }}</td>
+                <td>{{ data.address }}</td>
+              </tr>
+            </tbody>
+          </nz-table>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </nz-table>
+</div>
