@@ -1,1 +1,47 @@
-<p>student-attendance works!</p>
+<div class="container">
+  <h5>Student Attendance</h5>
+  <div class="d-flex justify-content-end">
+    <nz-date-picker
+      class="mb-2"
+      [(ngModel)]="selectedDate"
+      (ngModelChange)="fetchAttendance()"
+      nzFormat="yyyy-MM-dd"
+      nzPlaceHolder="Select Date"
+    >
+    </nz-date-picker>
+  </div>
+
+  <nz-table
+    #basicTable
+    [nzData]="studentAttendance"
+    [nzBordered]="true"
+    [nzShowPagination]="false"
+  >
+    <thead>
+      <tr>
+        <th>Student ID</th>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Is Present</th>
+        <th>Marked</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of studentAttendance">
+        <td>{{ student.studentNo }}</td>
+        <td>{{ student.studentName }}</td>
+        <td>{{ student.date | date }}</td>
+        <td>
+          <nz-switch
+            [(ngModel)]="student.isPresent"
+            [nzDisabled]="student.attendanceMarked"
+            [nzCheckedChildren]="'Present'"
+            [nzUnCheckedChildren]="'Absent'"
+            (ngModelChange)="markAttendance(student)"
+          ></nz-switch>
+        </td>
+        <td>{{ student.attendanceMarked ? "Yes" : "No" }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

@@ -3,13 +3,16 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { StudentAttendanceDto } from '../../@domain/StudentAttendanceDto';
 import { StaffAttendanceDto } from '../../@domain/StaffAttendancedto';
+import { environment } from '../../../environments/environment';
+
+// https://localhost:7211/api/Attendance/student/date?date=2024-12-10
 
 
 @Injectable({
   providedIn: 'root',
 })
 export class AttendanceService {
-  private baseUrl = 'https://your-api-url/api/attendance'; // Replace with your API's URL
+  private baseUrl = `${environment.apiUrl}/Attendance`;// Replace with your API's URL
 
   constructor(private http: HttpClient) {}
 
@@ -21,6 +24,15 @@ export class AttendanceService {
   // Mark Staff Attendance
   markStaffAttendance(attendance: StaffAttendanceDto): Observable<any> {
     return this.http.post(`${this.baseUrl}/staff`, attendance);
+  }
+
+  markStaffAttendanceTime(requestBody: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/mark-attendance-time`, requestBody);
+  }
+
+  // Mark the leave time for a staff member
+  markStaffLeaveTime(requestBody: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/mark-leave-time`, requestBody);
   }
 
   // Get Student Attendance by Date

@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrl: './attendance.component.scss'
 })
 export class AttendanceComponent {
+  tabIndex = 0
+
+  onChangeTab(tabIndex: number) {
+    this.tabIndex = tabIndex
+  }
 
 }

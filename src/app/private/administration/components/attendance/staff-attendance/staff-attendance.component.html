@@ -1,1 +1,57 @@
-<p>staff-attendance works!</p>
+<div class="container">
+  <h5>Staff Attendance</h5>
+  <div class="d-flex justify-content-end">
+    <nz-date-picker
+      class="mb-2"
+      [(ngModel)]="selectedDate"
+      (ngModelChange)="fetchAttendance()"
+      nzFormat="yyyy-MM-dd"
+      nzPlaceHolder="Select Date"
+    >
+    </nz-date-picker>
+  </div>
+
+  <nz-table
+    #basicTable
+    [nzData]="staffAttendance"
+    [nzBordered]="true"
+    [nzShowPagination]="false"
+  >
+    <thead>
+      <tr>
+        <th nzWidth="100px">Staff ID</th>
+        <th nzWidth="150px">Name</th>
+        <th nzWidth="150px">Date</th>
+        <th nzWidth="150px">Attendance Time</th>
+        <th nzWidth="150px">Leave Time</th>
+        <th nzWidth="100px">Marked</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let staff of basicTable.data">
+        <td>{{ staff.empNo }}</td>
+        <td>{{ staff.staffName }}</td>
+        <td>{{ staff.date | date }}</td>
+        <td>
+          <nz-time-picker
+            [(ngModel)]="staff.attendanceTime"
+            [nzFormat]="'HH:mm'"
+            [nzDisabled]="staff.attendanceMarked"
+            (ngModelChange)="markAttendance(staff)"
+            [nzPlaceHolder]="'Select Attendance Time'"
+          ></nz-time-picker>
+        </td>
+        <td>
+          <nz-time-picker
+            [(ngModel)]="staff.leaveTime"
+            [nzFormat]="'HH:mm'"
+            [nzDisabled]="staff.attendanceMarked"
+            (ngModelChange)="markAttendance(staff)"
+            [nzPlaceHolder]="'Select Leave Time'"
+          ></nz-time-picker>
+        </td>
+        <td>{{ staff.attendanceMarked ? "Yes" : "No" }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

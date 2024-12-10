@@ -92,8 +92,6 @@ export class StudentComponent {
     this.studentService.getAllStudents().subscribe(
       (students: StudentDto[]) => {
         this.students = students;
-        console.log(this.students);
-
       },
       (error) => {
         this.message.error('Failed to load students');

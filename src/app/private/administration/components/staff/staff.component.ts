@@ -94,8 +94,6 @@ export class StaffComponent {
     this.staffService.getAllStaff().subscribe(
       (staffs: StaffDto[]) => {
         this.staffMembers = staffs;
-        console.log(this.staffMembers);
-
       },
       (error) => {
         this.message.error('Failed to load students');
