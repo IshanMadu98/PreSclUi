@@ -10,6 +10,7 @@ export enum Paths {
   Student = 'student',
   Staff = 'staff',
   Attendance= 'attendance',
+  Payment = 'payment',
 
 
   Student_Home = 'student-home',

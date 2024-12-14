@@ -1,0 +1,53 @@
+<div class="container">
+  <h5>Payment</h5>
+  <div class="d-flex justify-content-between mb-2">
+    <div></div>
+
+    <button nz-button nzType="primary" (click)="addPayment()">
+      Add Payment
+    </button>
+  </div>
+
+  <nz-table
+    #nzTable
+    [nzData]="payments"
+    nzTableLayout="fixed"
+    [nzBordered]="true"
+    [nzTableLayout]="'fixed'"
+    [nzShowPagination]="false"
+    ngSkipHydration
+    [nzScroll]="{ y: 'calc(100vh - 270px)' }"
+    >
+    <thead>
+      <tr>
+        <th>Payment ID</th>
+        <th>Student</th>
+        <th>Amount</th>
+        <th>Payment Date</th>
+        <th>Payment Type</th>
+        <th>Status</th>
+        <th>Note</th>
+        <th nzWidth="180px">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let payment of nzTable.data">
+        <td>{{ payment.receiptNumber }}</td>
+        <td>{{ payment.studentNo }}</td>
+        <td>{{ payment.amount }}</td>
+        <td>{{ payment.paymentDate | date }}</td>
+        <td>{{ paymentCategory[payment.category] }}</td>
+        <td>{{ paymentStatus[payment.status] }}</td>
+        <td>{{ payment.notes }}</td>
+        <td class="text-center">
+          <button nz-button nzType="default" (click)="updatePayment(payment)">
+            Edit
+          </button>
+          <button nz-button nzType="default" (click)="deletePayment(payment.id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

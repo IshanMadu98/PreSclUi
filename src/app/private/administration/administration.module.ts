@@ -15,6 +15,8 @@ import { StaffAttendanceComponent } from './components/attendance/staff-attendan
 import { StudentAttendanceComponent } from './components/attendance/student-attendance/student-attendance.component';
 import { AddUpdateStudentDialogComponent } from './components/student/add-update-student-dialog/add-update-student-dialog.component';
 import { AddUpdateStaffDialogComponent } from './components/staff/add-update-staff-dialog/add-update-staff-dialog.component';
+import { PaymentComponent } from './components/payment/payment.component';
+import { AddUpdatePaymentDialogComponent } from './components/payment/add-update-payment-dialog/add-update-payment-dialog.component';
 
 
 
@@ -32,6 +34,9 @@ const routes: Routes = [
       },{
         path: Paths.Attendance,
         component: AttendanceComponent
+      },{
+        path: Paths.Payment,
+        component: PaymentComponent
       },
     ]
   }]
@@ -54,7 +59,9 @@ const routes: Routes = [
     StaffAttendanceComponent,
     StudentAttendanceComponent,
     AddUpdateStudentDialogComponent,
-    AddUpdateStaffDialogComponent
+    AddUpdateStaffDialogComponent,
+    PaymentComponent,
+    AddUpdatePaymentDialogComponent
   ]
 
 })
