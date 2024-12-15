@@ -11,7 +11,7 @@
 <hr />
 <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
   <div mat-dialog-content>
-    <p *ngIf="paymentData">Payment No :{{ paymentData?.receiptNumber }}</p>
+    <p *ngIf="paymentData">Payment No :{{ paymentData.receiptNumber }}</p>
     <div class="row">
       <!-- Payment ID -->
 
@@ -31,8 +31,26 @@
       <!-- Payment Date -->
       <div class="col-md-12">
         <nz-form-item>
+          <nz-form-label nzRequired>Student</nz-form-label>
+          <nz-form-control nzErrorTip="Student is required!" class="w-100">
+            <nz-select
+              formControlName="studentId"
+              nzPlaceHolder="Select Student"
+              [nzDisabled]="paymentData"
+            >
+              <nz-option
+                *ngFor="let item of studentKeyValue"
+                [nzLabel]="item.value"
+                [nzValue]="item.key"
+              ></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div class="col-md-12">
+        <nz-form-item>
           <nz-form-label nzRequired>Payment Date</nz-form-label>
-          <nz-form-control nzErrorTip="Payment Date is required!">
+          <nz-form-control nzErrorTip="Payment Date is required!" class="w-100">
             <nz-date-picker
               class="w-100"
               formControlName="paymentDate"
@@ -41,33 +59,6 @@
         </nz-form-item>
       </div>
 
-      <!-- Amount -->
-      <div class="col-md-6">
-        <nz-form-item>
-          <nz-form-label nzRequired>Amount</nz-form-label>
-          <nz-form-control nzErrorTip="Amount is required!" class="w-100">
-            <input
-              nz-input
-              formControlName="amount"
-              placeholder="Enter Amount"
-            />
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-
-      <!-- Status -->
-      <div class="col-md-6">
-        <nz-form-item>
-          <nz-form-label nzRequired>Status</nz-form-label>
-          <nz-form-control nzErrorTip="Status is required!" class="w-100">
-            <nz-select formControlName="status" nzPlaceHolder="Select Status">
-              <nz-option [nzValue]="0" nzLabel="Pending"></nz-option>
-              <nz-option [nzValue]="1" nzLabel="HalfPaid"></nz-option>
-              <nz-option [nzValue]="2" nzLabel="Paid"></nz-option>
-            </nz-select>
-          </nz-form-control>
-        </nz-form-item>
-      </div>
       <div class="col-md-12">
         <nz-form-item>
           <nz-form-label nzRequired>Payment Category</nz-form-label>
@@ -80,19 +71,52 @@
               nzPlaceHolder="Select Payment Category"
             >
               <nz-option
-                *ngFor="let category of paymentCategories"
-                [nzValue]="category.value"
-                [nzLabel]="category.label"
+                *ngFor="let category of PaymentCategoryKeyValue"
+                [nzValue]="category.key"
+                [nzLabel]="category.value"
               ></nz-option>
             </nz-select>
           </nz-form-control>
         </nz-form-item>
       </div>
+      <!-- Amount -->
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label nzRequired>Amount</nz-form-label>
+          <nz-form-control nzErrorTip="Amount is required!" class="w-100">
+            <nz-input-number
+              nz-input
+              formControlName="amount"
+              nzPlaceHolder="Enter Amount"
+              class="w-100"
+              nzMin="0"
+                          >
+            </nz-input-number>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <!-- Status -->
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label nzRequired>Status</nz-form-label>
+          <nz-form-control nzErrorTip="Status is required!" class="w-100">
+            <nz-select formControlName="status" nzPlaceHolder="Select Status">
+              <nz-option
+                *ngFor="let item of paymentStatusKeyValue"
+                [nzLabel]="item.value"
+                [nzValue]="item.key"
+              ></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
       <!-- Notes -->
       <div class="col-md-12">
         <nz-form-item>
           <nz-form-label>Notes</nz-form-label>
-          <nz-form-control>
+          <nz-form-control  class="w-100">
             <textarea
               nz-input
               formControlName="notes"

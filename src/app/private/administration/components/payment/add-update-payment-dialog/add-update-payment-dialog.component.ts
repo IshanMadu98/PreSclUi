@@ -3,7 +3,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { PaymentDto } from '../../../../../@domain/PaymentDto';
 import { PaymentService } from '../../../../../@application/services/paymentService';
-import { PaymentCategory } from '../../../../../@application/enums/paymentCategory';
+import { FormHelper, KeyString } from '../../../../../@application/form.helper';
+import { StudentDto } from '../../../../../@domain/StudentDto';
+import { StudentService } from '../../../../../@application/services/student.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-add-update-payment-dialog',
@@ -14,25 +17,21 @@ export class AddUpdatePaymentDialogComponent {
   paymentForm: FormGroup;
   title: string;
   btnTitle: string;
-  paymentData= {} as  PaymentDto;
-  paymentCategories = [
-    { value: PaymentCategory.SchoolFees, label: 'School Fees' },
-    { value: PaymentCategory.Stationery, label: 'Stationery' },
-    { value: PaymentCategory.SchoolDevelopmentFund, label: 'School Development Fund' },
-    { value: PaymentCategory.Registration, label: 'Registration' },
-    { value: PaymentCategory.Refundable, label: 'Refundable' },
-    { value: PaymentCategory.Sports, label: 'Sports' },
-    { value: PaymentCategory.Events, label: 'Events' },
-    { value: PaymentCategory.Other, label: 'Other' }
-  ];
+  paymentData = {} as PaymentDto;
+  paymentStatusKeyValue = FormHelper.GetPaymentStatusValueType()
+  PaymentCategoryKeyValue = FormHelper.GetPaymentCategoryList()
+  studentKeyValue = [] as KeyString[]
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { title: string; btnTitle: string; paymentData: PaymentDto },
     private dialogRef: MatDialogRef<AddUpdatePaymentDialogComponent>,
-    private paymentService: PaymentService
+    private paymentService: PaymentService,
+    private studentService: StudentService,
+    private message: NzMessageService
   ) {
-    this.title =  this.data.title;
-    this.btnTitle =  this.data.btnTitle;
-    this.paymentData =  this.data?.paymentData;
+    this.title = this.data.title;
+    this.btnTitle = this.data.btnTitle;
+    this.paymentData = this.data?.paymentData;
 
     this.paymentForm = new FormGroup({
       id: new FormControl(this.paymentData?.id, null),
@@ -45,6 +44,13 @@ export class AddUpdatePaymentDialogComponent {
       status: new FormControl(this.paymentData?.status, [Validators.required]),
       notes: new FormControl(this.paymentData?.notes),
     });
+
+
+  }
+
+  ngOnInit(): void {
+    this.loadStudents()
+
   }
 
   onSubmit() {
@@ -63,6 +69,21 @@ export class AddUpdatePaymentDialogComponent {
       }
     }
   }
+
+  private loadStudents(): void {
+    this.studentService.getAllStudents().subscribe(
+      (students: StudentDto[]) => {
+        this.studentKeyValue = FormHelper.ConvertForDropDown(students, {
+          key: 'id',
+          value: 'studentNo'
+        });
+      },
+      (error) => {
+        this.message.error('Failed to load students');
+      }
+    );
+  }
+
 }
 
 

@@ -17,6 +17,8 @@ import { AddUpdateStudentDialogComponent } from './components/student/add-update
 import { AddUpdateStaffDialogComponent } from './components/staff/add-update-staff-dialog/add-update-staff-dialog.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { AddUpdatePaymentDialogComponent } from './components/payment/add-update-payment-dialog/add-update-payment-dialog.component';
+import { EventComponent } from './components/event/event.component';
+import { AddUpdateEventDialogComponent } from './components/event/add-update-event-dialog/add-update-event-dialog.component';
 
 
 
@@ -37,6 +39,10 @@ const routes: Routes = [
       },{
         path: Paths.Payment,
         component: PaymentComponent
+      }
+      ,{
+        path: Paths.Event,
+        component: EventComponent
       },
     ]
   }]
@@ -61,7 +67,9 @@ const routes: Routes = [
     AddUpdateStudentDialogComponent,
     AddUpdateStaffDialogComponent,
     PaymentComponent,
-    AddUpdatePaymentDialogComponent
+    AddUpdatePaymentDialogComponent,
+    EventComponent,
+    AddUpdateEventDialogComponent
   ]
 
 })

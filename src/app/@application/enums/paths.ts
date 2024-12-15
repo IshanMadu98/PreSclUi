@@ -11,6 +11,7 @@ export enum Paths {
   Staff = 'staff',
   Attendance= 'attendance',
   Payment = 'payment',
+  Event = 'event',
 
 
   Student_Home = 'student-home',
