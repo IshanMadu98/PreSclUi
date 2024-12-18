@@ -12,6 +12,7 @@ export enum Paths {
   Attendance= 'attendance',
   Payment = 'payment',
   Event = 'event',
+  LeaveRequest = 'leave-request',
 
 
   Student_Home = 'student-home',

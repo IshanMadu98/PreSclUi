@@ -19,6 +19,8 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { AddUpdatePaymentDialogComponent } from './components/payment/add-update-payment-dialog/add-update-payment-dialog.component';
 import { EventComponent } from './components/event/event.component';
 import { AddUpdateEventDialogComponent } from './components/event/add-update-event-dialog/add-update-event-dialog.component';
+import { LeaveRequestComponent } from './components/leave-request/leave-request.component';
+import { AddUpdateLeaveRequestDialogComponent } from './components/leave-request/add-update-leave-request-dialog/add-update-leave-request-dialog.component';
 
 
 
@@ -43,6 +45,10 @@ const routes: Routes = [
       ,{
         path: Paths.Event,
         component: EventComponent
+      },
+      {
+        path: Paths.LeaveRequest,
+        component: LeaveRequestComponent
       },
     ]
   }]
@@ -69,7 +75,9 @@ const routes: Routes = [
     PaymentComponent,
     AddUpdatePaymentDialogComponent,
     EventComponent,
-    AddUpdateEventDialogComponent
+    AddUpdateEventDialogComponent,
+    LeaveRequestComponent,
+    AddUpdateLeaveRequestDialogComponent
   ]
 
 })

@@ -3,6 +3,23 @@
 
 export class FormHelper {
 
+
+  static GetLeaveTypeKeyValue(): KeyValue[] {
+    return [
+      { key: 0, value: 'Casual' },
+      { key: 1, value: 'Medical' },
+      { key: 2, value: 'Annual' },
+      { key: 3, value: 'Other' },
+    ]as KeyValue[];
+  }
+
+  static GetLeaveSessionKeyValue(): KeyValue[] {
+    return [
+      { key: 0, value: 'Full Day' },
+      { key: 1, value: 'First Half' },
+      { key: 2, value: 'Second Half' },
+    ]as KeyValue[];
+  }
   public static GetPaymentStatusValueType(): KeyValue[] {
     return [
       { key: 0, value: 'Pending' },
@@ -52,7 +69,22 @@ export class FormHelper {
     return keyValues;
   }
 
+  public static ConvertForDropDownNew<T>(
+    objectArr: T[],
+    consideredKeys: { key: keyof T; value: keyof T | ((item: T) => string) }
+  ): KeyValue[] {
+    return objectArr.map((item) => ({
+      key: item[consideredKeys.key],
+      value:
+        typeof consideredKeys.value === 'function'
+          ? consideredKeys.value(item) // Call the function for dynamic values
+          : item[consideredKeys.value] as string, // Use the property directly for static values
+    }));
+  }
 }
+
+
+
 export interface KeyValue {
   key: any;
   value: string;

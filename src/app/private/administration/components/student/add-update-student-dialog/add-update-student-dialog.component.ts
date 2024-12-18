@@ -50,8 +50,8 @@ export class AddUpdateStudentDialogComponent {
   }
 
   onSubmit(): void {
-    console.log(this.studentForm.value);
     if (this.studentForm.valid) {
+      console.log(this.studentForm.value);
       const data = this.studentForm.value;
       if (this.btnTitle === 'Add') {
         this.addStudent(data);

@@ -1,0 +1,132 @@
+<div mat-dialog-title class="d-flex justify-content-between">
+  <div>
+    <p class="mb-0 mt-1 ps-2 dialog-title">{{ title }}</p>
+  </div>
+  <div class="justify-content-end">
+    <button [mat-dialog-close]="true" mat-icon-button>
+      <mat-icon class="dialog-icon">close</mat-icon>
+    </button>
+  </div>
+</div>
+<hr />
+<form [formGroup]="leaveForm" (ngSubmit)="onSubmit()">
+  <div mat-dialog-content>
+    <div class="row">
+      <!-- Staff -->
+      <div class="col-md-12">
+        <nz-form-item>
+          <nz-form-label nzRequired>Staff</nz-form-label>
+          <nz-form-control nzErrorTip="Staff is required!" class="w-100">
+            <nz-select
+              formControlName="staffId"
+              nzPlaceHolder="Select Staff"
+              [nzDisabled]="leaveData"
+            >
+              <nz-option
+                *ngFor="let item of staffKeyValue"
+                [nzLabel]="item.value"
+                [nzValue]="item.key"
+              ></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <!-- Leave Type -->
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label nzRequired>Leave Type</nz-form-label>
+          <nz-form-control nzErrorTip="Leave Type is required!" class="w-100">
+            <nz-select
+              formControlName="leaveType"
+              nzPlaceHolder="Select Leave Type"
+            >
+              <nz-option
+                *ngFor="let type of leaveTypeKeyValue"
+                [nzLabel]="type.value"
+                [nzValue]="type.key"
+              ></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <!-- Session -->
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label nzRequired>Session</nz-form-label>
+          <nz-form-control nzErrorTip="Session is required!" class="w-100">
+            <nz-select
+              formControlName="session"
+              nzPlaceHolder="Select Session"
+            >
+              <nz-option
+                *ngFor="let session of leaveSessionKeyValue"
+                [nzLabel]="session.value"
+                [nzValue]="session.key"
+              ></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <!-- Start Date -->
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label nzRequired>Start Date</nz-form-label>
+          <nz-form-control
+            nzErrorTip="Start Date is required!"
+            class="w-100"
+          >
+            <nz-date-picker
+              class="w-100"
+              formControlName="startDate"
+            ></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <!-- End Date -->
+      <div class="col-md-6">
+        <nz-form-item>
+          <nz-form-label>End Date</nz-form-label>
+          <nz-form-control class="w-100">
+            <nz-date-picker
+              class="w-100"
+              formControlName="endDate"
+            ></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <!-- Reason -->
+      <div class="col-md-12">
+        <nz-form-item>
+          <nz-form-label nzRequired>Reason</nz-form-label>
+          <nz-form-control nzErrorTip="Reason is required!" class="w-100">
+            <textarea
+              nz-input
+              formControlName="reason"
+              placeholder="Enter Reason"
+            ></textarea>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-end mt-3 mb-4 me-4">
+    <button
+      class="small-btn-width btn-radius me-2"
+      [mat-dialog-close]="true"
+      nzType="primary"
+      nzGhost
+      nz-button
+    >
+      Cancel
+    </button>
+    <button class="btn-radius small-btn-width" nzType="primary" nz-button>
+      {{ btnTitle }}
+    </button>
+  </div>
+</form>

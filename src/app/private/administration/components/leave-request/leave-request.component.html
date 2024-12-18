@@ -1,0 +1,86 @@
+<div>
+  <h5>Leave Requests</h5>
+  <div class="d-flex justify-content-between mb-2">
+    <div></div>
+    <button nz-button nzType="primary" (click)="addLeaveRequest()">Add Leave Request</button>
+  </div>
+
+  <nz-table
+    #nzTable
+    [nzData]="leaveRequests"
+    [nzBordered]="true"
+    [nzScroll]="{ y: 'calc(100vh - 270px)' }"
+  >
+    <thead>
+      <tr>
+        <th>Staff Name</th>
+        <th>Leave Type</th>
+        <th>Session</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Reason</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let request of nzTable.data">
+        <td>{{ request.staffName }}</td>
+        <td>{{ leaveType[request.leaveType] }}</td>
+        <td>{{ leaveSession[request.session] }}</td>
+        <td>{{ request.startDate | date }}</td>
+        <td>{{ request.endDate | date }}</td>
+        <td>{{ request.reason }}</td>
+        <td [ngClass]="{'text-success': request.status === leaveStatus.Approved, 'text-danger': request.status === leaveStatus.Rejected}">
+          {{ leaveStatus[request.status] }}
+        </td>
+        <td class="d-flex justify-content-between w-100" [nzDisabled]="request.status === leaveStatus.Pending">
+          <!-- Edit Button -->
+          <a
+            (click)="updateLeaveRequest(request)"
+            class="m-2 text-secondary"
+            nz-tooltip="Edit"
+            [ngClass]="{ 'disabled': request.status !== leaveStatus.Pending }"
+            [attr.disabled]="request.status !== leaveStatus.Pending ? true : null"
+          >
+            <em class="las la-pen-square la-lg"></em>
+          </a>
+
+          <!-- Delete Button -->
+          <a
+            (click)="deleteLeaveRequest(request.id)"
+            class="m-2 text-danger"
+            nz-tooltip="Delete"
+            [ngClass]="{ 'disabled': request.status !== leaveStatus.Pending }"
+            [attr.disabled]="request.status !== leaveStatus.Pending ? true : null"
+          >
+            <em class="las la-trash-alt la-lg"></em>
+          </a>
+
+          <!-- Approve Button -->
+          <a
+            (click)="approveLeave(request)"
+            class="m-2 text-success"
+            nz-tooltip="Approve"
+            [ngClass]="{ 'disabled': request.status !== leaveStatus.Pending }"
+            [attr.disabled]="request.status !== leaveStatus.Pending ? true : null"
+          >
+            <em class="las la-check la-lg"></em>
+          </a>
+
+          <!-- Reject Button -->
+          <a
+            (click)="rejectLeave(request)"
+            class="m-2 text-warning"
+            nz-tooltip="Reject"
+            [ngClass]="{ 'disabled': request.status !== leaveStatus.Pending }"
+            [attr.disabled]="request.status !== leaveStatus.Pending ? true : null"
+          >
+            <em class="las la-times la-lg"></em>
+          </a>
+        </td>
+
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

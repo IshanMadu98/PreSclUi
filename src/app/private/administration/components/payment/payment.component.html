@@ -40,12 +40,27 @@
         <td>{{ paymentStatus[payment.status] }}</td>
         <td>{{ payment.notes }}</td>
         <td class="text-center">
-          <button nz-button nzType="default" (click)="updatePayment(payment)">
-            Edit
-          </button>
-          <button nz-button nzType="default" (click)="deletePayment(payment.id)">
-            Delete
-          </button>
+          <div>
+            <!-- Edit Button with Icon -->
+            <a
+              (click)="updatePayment(payment)"
+              class="m-2 text-secondary"
+              nz-tooltip="Edit"
+            >
+              <em class="las la-pen-square la-lg"></em>
+              <!-- Edit Icon -->
+            </a>
+
+            <!-- Delete Button with Icon -->
+            <a
+              (click)="deletePayment(payment.id)"
+              class="m-2 text-danger"
+              nz-tooltip="Delete"
+            >
+              <em class="las la-trash-alt la-lg"></em>
+              <!-- Delete Icon -->
+            </a>
+          </div>
         </td>
       </tr>
     </tbody>

@@ -37,16 +37,27 @@
         <td>{{ data.firstName }} {{ data.lastName }}</td>
         <td>{{ data.email }}</td>
         <td class="text-center">
-          <button nz-button nzType="default" (click)="UpdateStaff(data)">
-            Edit
-          </button>
-          <button
-            nz-button
-            nzType="default"
-            (click)="deleteStaff(data.id)"
-          >
-            Delete
-          </button>
+          <div>
+            <!-- Edit Button with Icon -->
+            <a
+              (click)="UpdateStaff(data)"
+              class="m-2 text-secondary"
+              nz-tooltip="Edit"
+            >
+              <em class="las la-pen-square la-lg"></em>
+              <!-- Edit Icon -->
+            </a>
+
+            <!-- Delete Button with Icon -->
+            <a
+              (click)="deleteStaff(data.id)"
+              class="m-2 text-danger"
+              nz-tooltip="Delete"
+            >
+              <em class="las la-trash-alt la-lg"></em>
+              <!-- Delete Icon -->
+            </a>
+          </div>
         </td>
       </tr>
       <tr [nzExpand]="expandSet.has(data.id)">
