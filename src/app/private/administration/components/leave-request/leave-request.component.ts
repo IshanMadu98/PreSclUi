@@ -80,24 +80,41 @@ export class LeaveRequestComponent {
     });
   }
   approveLeave(request: LeaveRequestDto): void {
-    this.leaveRequestService.approveOrRejectLeave(request.id, LeaveStatus.Approved, 'Director').subscribe(
-      () => {
-        this.message.success('Leave request approved');
-        this.loadLeaveRequests();
+    this.modal.confirm({
+      nzTitle: 'Are you sure you want to approve this leave request?',
+      nzOkText: 'Yes, Approve',
+      nzOkType: 'primary',
+      nzOkDanger: false,
+      nzOnOk: () => {
+        this.leaveRequestService.approveOrRejectLeave(request.id, LeaveStatus.Approved, 'Director').subscribe(
+          () => {
+            this.message.success('Leave request approved');
+            this.loadLeaveRequests();
+          },
+          () => this.message.error('Failed to approve leave request')
+        );
       },
-      () => this.message.error('Failed to approve leave request')
-    );
+    });
   }
 
   rejectLeave(request: LeaveRequestDto): void {
-    this.leaveRequestService.approveOrRejectLeave(request.id, LeaveStatus.Rejected, 'Director').subscribe(
-      () => {
-        this.message.success('Leave request rejected');
-        this.loadLeaveRequests();
+    this.modal.confirm({
+      nzTitle: 'Are you sure you want to reject this leave request?',
+      nzOkText: 'Yes, Reject',
+      nzOkType: 'default',
+      nzOkDanger: true,
+      nzOnOk: () => {
+        this.leaveRequestService.approveOrRejectLeave(request.id, LeaveStatus.Rejected, 'Director').subscribe(
+          () => {
+            this.message.success('Leave request rejected');
+            this.loadLeaveRequests();
+          },
+          () => this.message.error('Failed to reject leave request')
+        );
       },
-      () => this.message.error('Failed to reject leave request')
-    );
+    });
   }
+
 
   private reloadAfterDialog(dialogRef: MatDialogRef<any>): void {
     dialogRef.afterClosed().subscribe(() => this.loadLeaveRequests());
