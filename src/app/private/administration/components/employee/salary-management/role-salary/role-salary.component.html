@@ -1,0 +1,51 @@
+<div>
+  <h5>Role Salaries</h5>
+  <div class="d-flex justify-content-between mb-2">
+    <div></div>
+    <button nz-button nzType="primary" (click)="addRoleSalary()">Add Role Salary</button>
+  </div>
+
+  <nz-table
+    #nzTable
+    [nzData]="roleSalaries"
+    nzTableLayout="fixed"
+    [nzBordered]="true"
+    [nzShowPagination]="false"
+    [nzScroll]="{ y: 'calc(100vh - 270px)' }"
+  >
+    <thead>
+      <tr>
+        <th>Role</th>
+        <th>Basic Salary</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let roleSalary of nzTable.data">
+        <td>{{ userRole[roleSalary.staffRole] }}</td>
+        <td>{{ roleSalary.basicSalary | currency }}</td>
+        <td class="text-center">
+          <div>
+            <!-- Edit Button with Icon -->
+            <a
+              (click)="updateRoleSalary(roleSalary)"
+              class="m-2 text-secondary"
+              nz-tooltip="Edit"
+            >
+              <em class="las la-pen-square la-lg"></em>
+            </a>
+
+            <!-- Delete Button with Icon -->
+            <a
+              (click)="deleteRoleSalary(roleSalary.id)"
+              class="m-2 text-danger"
+              nz-tooltip="Delete"
+            >
+              <em class="las la-trash-alt la-lg"></em>
+            </a>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

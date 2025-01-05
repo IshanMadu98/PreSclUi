@@ -1,0 +1,8 @@
+<nz-tabset nzType="card" (nzSelectedIndexChange)="onChangeTab($event)">
+  <nz-tab [nzTitle]="'Role-Salary' ">
+    <app-role-salary *ngIf="tabIndex === 0"></app-role-salary>
+  </nz-tab>
+  <nz-tab [nzTitle]="'Staff-Salary' ">
+    <app-staff-salary *ngIf="tabIndex ===1"></app-staff-salary>
+  </nz-tab>
+</nz-tabset>

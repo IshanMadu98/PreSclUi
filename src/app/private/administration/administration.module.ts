@@ -21,6 +21,11 @@ import { EventComponent } from './components/event/event.component';
 import { AddUpdateEventDialogComponent } from './components/event/add-update-event-dialog/add-update-event-dialog.component';
 import { LeaveRequestComponent } from './components/leave-request/leave-request.component';
 import { AddUpdateLeaveRequestDialogComponent } from './components/leave-request/add-update-leave-request-dialog/add-update-leave-request-dialog.component';
+import { SalaryManagementComponent } from './components/employee/salary-management/salary-management.component';
+import { RoleSalaryComponent } from './components/employee/salary-management/role-salary/role-salary.component';
+import { StaffSalaryComponent } from './components/employee/salary-management/staff-salary/staff-salary.component';
+import { AddUpdateSalaryDialogComponent } from './components/employee/salary-management/staff-salary/add-update-salary-dialog/add-update-salary-dialog.component';
+import { AddUpdateRoleSalaryDialogComponent } from './components/employee/salary-management/role-salary/add-update-role-salary-dialog/add-update-role-salary-dialog.component';
 
 
 
@@ -35,20 +40,24 @@ const routes: Routes = [
       {
         path: Paths.Staff,
         component: StaffComponent
-      },{
+      }, {
         path: Paths.Attendance,
         component: AttendanceComponent
-      },{
+      }, {
         path: Paths.Payment,
         component: PaymentComponent
       }
-      ,{
+      , {
         path: Paths.Event,
         component: EventComponent
       },
       {
         path: Paths.LeaveRequest,
         component: LeaveRequestComponent
+      },
+      {
+        path: Paths.Salary,
+        component: SalaryManagementComponent
       },
     ]
   }]
@@ -60,7 +69,7 @@ const routes: Routes = [
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    ],
+  ],
   declarations: [
     AdministrationComponent,
     AdminHomeComponent,
@@ -77,7 +86,12 @@ const routes: Routes = [
     EventComponent,
     AddUpdateEventDialogComponent,
     LeaveRequestComponent,
-    AddUpdateLeaveRequestDialogComponent
+    AddUpdateLeaveRequestDialogComponent,
+    SalaryManagementComponent,
+    RoleSalaryComponent,
+    StaffSalaryComponent,
+    AddUpdateSalaryDialogComponent,
+    AddUpdateRoleSalaryDialogComponent
   ]
 
 })

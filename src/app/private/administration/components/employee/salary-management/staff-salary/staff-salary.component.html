@@ -1,0 +1,54 @@
+<div>
+  <h5>Staff Salaries</h5>
+  <div class="d-flex justify-content-end">
+    <nz-date-picker
+      class="mb-2"
+      [(ngModel)]="selectedDate"
+      (ngModelChange)="fetchSalary()"
+      nzMode="month"
+      nzPlaceHolder="Select month"
+      [nzDisabledDate]="disableFutureMonths"
+      >
+    </nz-date-picker>
+  </div>
+  <nz-table
+    #nzTable
+    [nzData]="salaries"
+    nzTableLayout="fixed"
+    [nzBordered]="true"
+    [nzShowPagination]="false"
+    [nzScroll]="{ y: 'calc(100vh - 270px)' }"
+  >
+    <thead>
+      <tr>
+        <th>Staff Name</th>
+        <th>Basic Salary</th>
+        <th>Overtime</th>
+        <th>Deduction</th>
+        <th>Final Salary</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let salary of nzTable.data">
+        <td>{{ salary.staffName }}</td>
+        <td>{{ salary.basicSalary | currency }}</td>
+        <td>{{ salary.overtime | currency }}</td>
+        <td>{{ salary.deduction | currency }}</td>
+        <td>{{ salary.finalSalary | currency }}</td>
+        <td class="text-center">
+          <div>
+            <!-- Generate Salary Button with Icon -->
+            <a
+              (click)="generateSalary(salary.staffId)"
+              class="m-2 text-primary"
+              nz-tooltip="Generate Salary"
+            >
+              <em class="las la-file-invoice-dollar la-lg"></em>
+            </a>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

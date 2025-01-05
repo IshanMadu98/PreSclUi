@@ -3,6 +3,16 @@
 
 export class FormHelper {
 
+  static GetStaffRoleKeyValue(): KeyValue[] {
+    return [
+      { key: 0, value: 'Admin' },
+      { key: 1, value: 'Principal' },
+      { key: 2, value: 'Manager' },
+      { key: 3, value: 'Teacher' },
+      { key: 4, value: 'Staff' },
+      { key: 5, value: 'Student' },
+    ]as KeyValue[];
+  }
 
   static GetLeaveTypeKeyValue(): KeyValue[] {
     return [
